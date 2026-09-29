@@ -1,0 +1,214 @@
+/* ==========================================================================
+   Bayou Landing HOA - Digital Parking Permit (DEMO)
+   Palette/fonts glanced from the public site's style.css, but sized up a
+   lot: many residents are older / not tech-savvy, so this favors big text,
+   big tap targets, and one task per screen over density.
+   No frameworks, no webfonts, no external requests.
+   ========================================================================== */
+
+:root {
+  --bg:            #f7f6f3;
+  --surface:       #ffffff;
+  --surface-alt:   #eeece6;
+  --ink:            #1c2430;
+  --ink-soft:       #46505f;
+  --line:           #d5d1c8;
+  --line-strong:    #b6b1a5;
+
+  --brand:          #1f4e5f;
+  --brand-dark:     #143741;
+  --brand-tint:     #e6eef1;
+
+  --orange:         #b5560f;
+  --orange-bg:      #fdf0e3;
+  --green:          #276b34;
+  --green-bg:       #eaf5ec;
+  --red:            #9c1c1c;
+  --red-bg:         #fbeaea;
+
+  --focus:          #a34a00;
+  --radius:         10px;
+  --shadow:         0 1px 2px rgba(28, 36, 48, .08), 0 3px 12px rgba(28, 36, 48, .06);
+
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+          Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { font-size: 112.5%; /* ~18px base -> body bumps to 20px below */ -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 1.25rem;   /* ~20px */
+  line-height: 1.6;
+}
+
+h1, h2, h3 { color: var(--brand-dark); font-weight: 700; line-height: 1.25; margin: 0 0 .6rem; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.3rem; }
+p { margin: 0 0 1rem; }
+
+a { color: var(--brand); text-decoration-underline; text-underline-offset: 2px; }
+a:visited { color: #3b2f66; }
+
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+:focus:not(:focus-visible) { outline: none; }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  background: var(--surface); color: var(--brand-dark);
+  padding: .9rem 1.2rem; font-weight: 700; border: 2px solid var(--brand-dark);
+}
+.skip-link:focus { left: 0; }
+
+/* ------------------------------------------------------------- banner --- */
+.demo-banner {
+  background: #a30000;
+  color: #ffffff;
+  text-align: center;
+  font-weight: 700;
+  padding: .7rem 1rem;
+  font-size: 1.05rem;
+  letter-spacing: .01em;
+}
+
+/* -------------------------------------------------------------- header - */
+.app-header {
+  background: var(--brand-dark);
+  color: #ffffff;
+  border-bottom: 4px solid var(--brand);
+  padding: .8rem 1rem;
+}
+.app-header-inner {
+  max-width: 50rem; margin: 0 auto;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .6rem;
+}
+.app-header a.wordmark { color: #fff; text-decoration: none; font-weight: 700; font-size: 1.15rem; }
+.app-header a.wordmark small { display: block; font-size: .8rem; font-weight: 400; color: #c5dbe2; }
+.app-role-tag {
+  background: rgba(255,255,255,.14); color: #fff; border-radius: 999px;
+  padding: .35rem .9rem; font-size: 1rem;
+}
+.app-nav { display: flex; flex-wrap: wrap; gap: .4rem; }
+.app-nav a {
+  color: #e3eef1; text-decoration: none; padding: .5rem .7rem; border-radius: 8px; font-size: 1.05rem;
+}
+.app-nav a:hover, .app-nav a[aria-current] { background: rgba(255,255,255,.16); text-decoration: underline; }
+.logout-form button {
+  background: transparent; border: 2px solid #e3eef1; color: #fff;
+  border-radius: 8px; padding: .5rem 1rem; font-size: 1.05rem; font-weight: 700; cursor: pointer;
+}
+
+main.app-main { max-width: 50rem; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+main.center-main { max-width: 34rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
+
+/* ------------------------------------------------------------ buttons -- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 56px; width: 100%;
+  background: var(--brand); color: #fff; border: 2px solid var(--brand-dark);
+  border-radius: var(--radius); padding: .9rem 1.3rem; font-size: 1.2rem; font-weight: 700;
+  text-decoration: none; cursor: pointer; box-shadow: var(--shadow); margin-bottom: .9rem;
+}
+.btn:visited { color: #fff; }
+.btn:hover { background: var(--brand-dark); }
+.btn-secondary { background: var(--surface); color: var(--brand-dark); border-color: var(--line-strong); }
+.btn-secondary:visited { color: var(--brand-dark); }
+.btn-secondary:hover { background: var(--brand-tint); }
+.btn-danger { background: var(--red); border-color: #6e0f0f; }
+.btn-danger:hover { background: #7a1414; }
+.btn-block-group { display: grid; gap: 1rem; margin: 1.5rem 0; }
+
+@media (min-width: 40em) {
+  .btn { width: auto; min-width: 16rem; }
+}
+
+/* -------------------------------------------------------------- forms -- */
+.field { margin-bottom: 1.4rem; }
+.field label { display: block; font-weight: 700; margin-bottom: .4rem; font-size: 1.1rem; }
+.field .hint { color: var(--ink-soft); font-size: 1rem; margin-top: .3rem; }
+.field .error {
+  color: var(--red); font-weight: 700; font-size: 1.05rem; margin-top: .4rem;
+}
+input[type="text"], input[type="password"], input[type="number"], input[type="tel"],
+select, textarea {
+  width: 100%; font: inherit; font-size: 1.2rem; padding: .8rem .9rem;
+  min-height: 56px; border: 2px solid var(--line-strong); border-radius: 8px;
+  background: var(--surface); color: var(--ink);
+}
+input[type="file"] { font-size: 1.05rem; }
+textarea { min-height: 6rem; }
+fieldset { border: 2px solid var(--line-strong); border-radius: var(--radius); padding: 1rem 1.2rem; margin: 0 0 1.4rem; }
+legend { font-weight: 700; font-size: 1.1rem; padding: 0 .4rem; }
+.radio-row, .checkbox-row { display: flex; align-items: center; gap: .6rem; margin-bottom: .7rem; font-size: 1.15rem; }
+.radio-row input, .checkbox-row input { width: 1.6rem; height: 1.6rem; }
+
+/* ------------------------------------------------------------- panels -- */
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 1.2rem 1.3rem; margin: 0 0 1.3rem;
+}
+.card h2, .card h3 { margin-top: 0; }
+
+.panel-orange { background: var(--orange-bg); border: 2px solid var(--orange); }
+.panel-green  { background: var(--green-bg);  border: 2px solid var(--green); }
+.panel-red    { background: var(--red-bg);    border: 2px solid var(--red); }
+.panel-neutral{ background: var(--surface-alt); border: 2px solid var(--line-strong); }
+
+.result-banner {
+  border-radius: var(--radius); padding: 1.6rem 1.4rem; margin: 0 0 1.4rem; text-align: center;
+}
+.result-banner h1 { font-size: 2.1rem; margin-bottom: .4rem; }
+.result-icon { font-size: 3rem; line-height: 1; display: block; margin-bottom: .3rem; }
+
+.proposed-tag {
+  display: inline-block; background: #6b4b12; color: #fff; font-weight: 700;
+  border-radius: 999px; padding: .3rem .8rem; font-size: .95rem; margin-bottom: .8rem;
+}
+
+.callout {
+  border-left: 6px solid var(--brand); background: var(--brand-tint);
+  border-radius: 8px; padding: 1rem 1.2rem; margin: 0 0 1.3rem;
+}
+
+table { border-collapse: collapse; width: 100%; margin: 0 0 1.4rem; font-size: 1.05rem; }
+th, td { border: 1px solid var(--line); padding: .6rem .7rem; text-align: left; vertical-align: top; }
+th { background: var(--surface-alt); }
+.table-wrap { overflow-x: auto; }
+
+.search-box { margin-bottom: 1.2rem; }
+
+.vehicle-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  padding: .9rem 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.vehicle-row:last-child { border-bottom: none; }
+.vehicle-actions { display: flex; gap: .6rem; flex-wrap: wrap; }
+.vehicle-actions .btn { margin-bottom: 0; min-height: 48px; padding: .6rem 1rem; font-size: 1rem; }
+
+.plate-badge {
+  display: inline-block; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 700; letter-spacing: .08em; background: #fff; border: 2px solid var(--ink);
+  border-radius: 6px; padding: .25rem .6rem; font-size: 1.15rem;
+}
+
+.app-footer { text-align: center; color: var(--ink-soft); font-size: 1rem; padding: 1.5rem 1rem; }
+
+.big-plate-input {
+  font-size: 2.4rem; text-align: center; letter-spacing: .1em; text-transform: uppercase;
+  min-height: 88px;
+}
+
+/* ------------------------------------------------------------- map ----- */
+#tow-map { margin: 1rem 0; }
+.tow-map-fallback img { border-radius: 12px; border: 1px solid var(--line); }
+
+/* ---------------------------------------------------------------- print- */
+@media print {
+  .app-header, .demo-banner, .app-footer, .skip-link, nav, .no-print { display: none !important; }
+  body { background: #fff; color: #000; font-size: 14pt; }
+  a[href^="http"]::after, a[href^="tel"]::after, a[href^="mailto"]::after { content: " (" attr(href) ")"; font-size: 10pt; }
+}

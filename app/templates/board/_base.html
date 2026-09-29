@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block header_extra %}
+<span class="app-role-tag">Board / PMG</span>
+<nav class="app-nav">
+  <a href="/board">Dashboard</a>
+  <a href="/board/units">Units</a>
+  <a href="/board/approvals">Tow approvals</a>
+  <a href="/board/tow-log">Tow log</a>
+  <a href="/board/audit-log">Lookup log</a>
+</nav>
+<form class="logout-form" method="post" action="/board/logout">
+  <button type="submit">Sign out</button>
+</form>
+{% endblock %}

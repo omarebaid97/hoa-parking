@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}My unit - sign in{% endblock %}
+{% block main_class %}center-main{% endblock %}
+{% block content %}
+<h1>My unit</h1>
+<p>Pick your address and enter your 6-digit PIN.</p>
+
+{% if demo_mode %}
+<div class="callout">
+  <p>Demo PIN for every unit: <strong>{{ demo_pin }}</strong></p>
+</div>
+{% endif %}
+
+{% if error %}
+<div class="field"><p class="error">{{ error }}</p></div>
+{% endif %}
+
+<form method="post" action="/resident/login">
+  <div class="field">
+    <label for="address">My address</label>
+    <select id="address" name="address" required>
+      <option value="" disabled {% if not selected_address %}selected{% endif %}>Choose your address</option>
+      {% for address in addresses %}
+      <option value="{{ address }}" {% if address == selected_address %}selected{% endif %}>{{ address }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="field">
+    <label for="pin">My 6-digit PIN</label>
+    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6" id="pin" name="pin" required autocomplete="off">
+  </div>
+  <button type="submit" class="btn">Sign in</button>
+</form>
+<p><a href="/">Back</a></p>
+{% endblock %}

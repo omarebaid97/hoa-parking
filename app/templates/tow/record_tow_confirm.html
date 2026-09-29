@@ -1,0 +1,10 @@
+{% extends "tow/_base.html" %}
+{% block title %}Tow recorded{% endblock %}
+{% block content %}
+<div class="result-banner panel-green">
+  <span class="result-icon" aria-hidden="true">&#10003;</span>
+  <h1>Tow recorded</h1>
+  <p><span class="plate-badge">{{ entry.plate }}</span> &mdash; {{ entry.zone }} zone</p>
+</div>
+<a class="btn" href="/tow">Look up another plate</a>
+{% endblock %}

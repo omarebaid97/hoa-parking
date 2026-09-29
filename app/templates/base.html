@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>{% block title %}Bayou Landing HOA - Parking Permits{% endblock %}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  {% if demo_mode %}
+  <div class="demo-banner" role="alert">
+    DEMO &mdash; sample data only, not the official system
+  </div>
+  {% endif %}
+  {% block header %}
+  <header class="app-header">
+    <div class="app-header-inner">
+      <a href="/" class="wordmark">
+        Bayou Landing HOA<small>Digital Parking Permits</small>
+      </a>
+      {% block header_extra %}{% endblock %}
+    </div>
+  </header>
+  {% endblock %}
+  <main id="main-content" class="{% block main_class %}app-main{% endblock %}">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="app-footer">
+    <p>Bayou Landing HOA &mdash; demo app, fabricated data only. <a href="/help/print">Print the how-to-use sheet</a>.</p>
+  </footer>
+</body>
+</html>

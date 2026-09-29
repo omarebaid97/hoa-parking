@@ -1,0 +1,21 @@
+services:
+  parking:
+    build: .
+    container_name: hoa-parking
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      DATA_DIR: /data
+    volumes:
+      - ./data:/data
+    # No ports: stanza on purpose - this is a DEMO built and run locally
+    # only. Deployment (internal-only, reached via a Cloudflare tunnel
+    # container joining this network) is a separate later step - see
+    # README.md.
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/healthz"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3

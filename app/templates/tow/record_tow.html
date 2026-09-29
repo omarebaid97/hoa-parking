@@ -1,0 +1,39 @@
+{% extends "tow/_base.html" %}
+{% block title %}Record a tow{% endblock %}
+{% block content %}
+<h1>Record a tow</h1>
+{% if error %}
+<div class="field"><p class="error">{{ error }}</p></div>
+{% endif %}
+<form method="post" action="/tow/record-tow" enctype="multipart/form-data">
+  <div class="field">
+    <label for="plate">License plate</label>
+    <input type="text" id="plate" name="plate" required autocomplete="off" value="{{ plate or '' }}">
+  </div>
+  <fieldset>
+    <legend>Zone</legend>
+    <div class="radio-row">
+      <input type="radio" id="zone_orange" name="zone" value="orange" {% if zone == 'orange' %}checked{% endif %} required>
+      <label for="zone_orange">Orange (patrolled Ann St)</label>
+    </div>
+    <div class="radio-row">
+      <input type="radio" id="zone_green" name="zone" value="green" {% if zone == 'green' %}checked{% endif %}>
+      <label for="zone_green">Green (in front of a home)</label>
+    </div>
+  </fieldset>
+  <div class="field">
+    <label for="location_note">Location note</label>
+    <input type="text" id="location_note" name="location_note" autocomplete="off" placeholder="e.g. near the north gate">
+  </div>
+  <div class="field">
+    <label for="approval_reference">Approval reference (optional)</label>
+    <input type="text" id="approval_reference" name="approval_reference" value="{{ approval_reference or '' }}">
+  </div>
+  <div class="field">
+    <label for="photo">Photo (optional)</label>
+    <input type="file" id="photo" name="photo" accept="image/*">
+  </div>
+  <button type="submit" class="btn">Save tow record</button>
+</form>
+<p><a href="/tow">Cancel</a></p>
+{% endblock %}

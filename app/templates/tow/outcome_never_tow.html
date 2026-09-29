@@ -1,0 +1,11 @@
+{% extends "tow/_base.html" %}
+{% block title %}Never tow - driveway{% endblock %}
+{% block content %}
+<div class="result-banner panel-neutral">
+  <span class="result-icon" aria-hidden="true">&#128683;</span>
+  <h1>Never tow</h1>
+  <p><span class="plate-badge">{{ plate }}</span> is on a private driveway.</p>
+</div>
+<p>Driveways are never towed, no matter what.</p>
+<a class="btn" href="/tow">Look up another plate</a>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Board / Management - sign in{% endblock %}
+{% block main_class %}center-main{% endblock %}
+{% block content %}
+<h1>Board / Management sign-in</h1>
+
+{% if demo_mode %}
+<div class="callout"><p>Demo login: <strong>{{ demo_username }}</strong> / <strong>{{ demo_password }}</strong></p></div>
+{% endif %}
+
+{% if error %}
+<div class="field"><p class="error">{{ error }}</p></div>
+{% endif %}
+
+<form method="post" action="/board/login">
+  <div class="field">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" required autocomplete="off">
+  </div>
+  <div class="field">
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required>
+  </div>
+  <button type="submit" class="btn">Sign in</button>
+</form>
+<p><a href="/">Back</a></p>
+{% endblock %}

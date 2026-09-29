@@ -1,0 +1,48 @@
+{% extends "resident/_base.html" %}
+{% block title %}Parking rules{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="/static/tow-map/vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="/static/tow-map/tow-map.css">
+
+<h1>Parking rules, in plain English</h1>
+
+<div class="card panel-orange">
+  <h2>Orange zone</h2>
+  <p>The main stretch of Ann St that connects both gates, plus the spots in front of the Lofts-facing units. This is patrolled.</p>
+  <p><strong>You must have a visible permit here.</strong> A car with no valid permit in the orange zone
+  {% if tow_approval_required %}needs Board/PMG approval before it can be towed.{% else %}may be towed.{% endif %}</p>
+</div>
+
+<div class="card panel-green">
+  <h2>Green zone</h2>
+  <p>The Ann St stretches directly in front of homes. This is <strong>not</strong> patrolled.</p>
+  <p>A car here is only towed if a resident asks for it and shows photo ID or something proving their address.</p>
+</div>
+
+<div class="card panel-neutral">
+  <h2>Driveways</h2>
+  <p>Private driveways are <strong>never</strong> towed.</p>
+</div>
+
+<div id="tow-map" class="tow-map" role="img" aria-label="Map of Bayou Landing towing zones"></div>
+<noscript>
+  <p class="tow-map-fallback"><img src="/static/tow-map/img/tow-map-static.png" alt="Map of Bayou Landing towing zones: orange patrolled main stretch of Ann St that connects both gates; green unpatrolled streets in front of homes"></p>
+</noscript>
+
+<div class="card">
+  <h2>Car permits</h2>
+  <ul>
+    <li>Each unit can have up to {{ cap }} car permits.</li>
+    <li>A permit is tied to your unit and one specific car. It cannot be given to someone else.</li>
+    <li>If you get a different car, replace the old permit &mdash; the old one turns off automatically.</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>Guest passes <span class="proposed-tag">Proposed &mdash; pending Board approval</span></h2>
+  <p>Not official policy yet. If approved, residents would be able to create a temporary pass for a visitor's car.</p>
+</div>
+
+<script src="/static/tow-map/vendor/leaflet/leaflet.js" defer></script>
+<script src="/static/tow-map/tow-map.js" defer></script>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "resident/_base.html" %}
+{% block title %}Remove this car?{% endblock %}
+{% block content %}
+<h1>Remove this car?</h1>
+<div class="card">
+  <span class="plate-badge">{{ vehicle.plate }}</span>
+  <p>{{ vehicle.color }} {{ vehicle.make }} {{ vehicle.model }}</p>
+</div>
+<p>This will turn off the parking permit for this car.</p>
+<form method="post" action="/resident/vehicles/{{ vehicle.id }}/remove">
+  <button type="submit" class="btn btn-danger">Yes, remove this car</button>
+</form>
+<p><a href="/resident">No, go back</a></p>
+{% endblock %}

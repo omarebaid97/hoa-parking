@@ -1,0 +1,46 @@
+{% extends "tow/_base.html" %}
+{% block title %}Approval required{% endblock %}
+{% block content %}
+<div class="result-banner panel-orange">
+  <span class="result-icon" aria-hidden="true">&#9888;</span>
+  <h1>Approval required before towing</h1>
+  <p><span class="plate-badge">{{ plate }}</span> is in the orange zone with no valid permit.</p>
+</div>
+
+<div class="card">
+  <h2>Call for approval</h2>
+  <p><strong>PMG:</strong> <a href="tel:7133297100">713-329-7100</a></p>
+  <p><strong>Board email:</strong> <a href="mailto:bayoulandinghoa@gmail.com">bayoulandinghoa@gmail.com</a></p>
+</div>
+
+{% if existing_request %}
+<div class="card">
+  <h2>Approval request status</h2>
+  {% if existing_request.status == "pending" %}
+  <p>Waiting on the Board. Requested at {{ existing_request.requested_at.strftime("%-I:%M %p") }}.</p>
+  <a class="btn btn-secondary" href="/tow/approval-requests/{{ existing_request.id }}">Check for a decision</a>
+  {% elif existing_request.status == "approved" %}
+  <div class="result-banner panel-green">
+    <h2>Approved by {{ existing_request.decided_by }}</h2>
+  </div>
+  <a class="btn btn-danger" href="/tow/record-tow?plate={{ plate }}&amp;zone=orange&amp;approval_reference=Approved by {{ existing_request.decided_by }} (request #{{ existing_request.id }})">Record a tow</a>
+  {% else %}
+  <div class="result-banner panel-red">
+    <h2>Denied by {{ existing_request.decided_by }}</h2>
+  </div>
+  <p>Do not tow this car.</p>
+  {% endif %}
+</div>
+{% else %}
+<form method="post" action="/tow/approval-requests">
+  <input type="hidden" name="plate" value="{{ plate }}">
+  <div class="field">
+    <label for="location_note">Where exactly is the car? (optional)</label>
+    <input type="text" id="location_note" name="location_note" autocomplete="off">
+  </div>
+  <button type="submit" class="btn">Request approval in app</button>
+</form>
+{% endif %}
+
+<p><a href="/tow">Look up a different plate</a></p>
+{% endblock %}

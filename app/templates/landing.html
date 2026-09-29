@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Bayou Landing HOA - Digital Parking Permits{% endblock %}
+{% block main_class %}center-main{% endblock %}
+{% block content %}
+<h1>Digital Parking Permits</h1>
+<p>Choose who you are to get started.</p>
+
+<div class="btn-block-group">
+  <a class="btn" href="/resident/login">I live here</a>
+  <a class="btn btn-secondary" href="/tow/login">Tow company</a>
+  <a class="btn btn-secondary" href="/board/login">Board / Management</a>
+</div>
+
+{% if demo_mode %}
+<div class="callout">
+  <h2>Try the demo as&hellip;</h2>
+  <p>These log you straight in with sample data. No password needed.</p>
+  <div class="btn-block-group">
+    <a class="btn btn-secondary" href="/demo/resident">Try as a resident ({{ demo_unit_address }})</a>
+    <a class="btn btn-secondary" href="/demo/tow">Try as the tow company</a>
+    <a class="btn btn-secondary" href="/demo/board">Try as the Board</a>
+  </div>
+</div>
+{% endif %}
+
+<p><a href="/resident/rules">Read the parking rules</a> &middot; <a href="/help/print">Print the how-to-use sheet</a></p>
+{% endblock %}

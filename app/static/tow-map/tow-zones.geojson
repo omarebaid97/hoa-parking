@@ -1,0 +1,232 @@
+{
+  "type": "FeatureCollection",
+  "coordinate_space": "image-pixel space for site/assets/img/tow-base.jpg (1400x988), CRS.Simple; coordinates are [x, -y] with origin at the image's top-left corner",
+  "image_width": 1400,
+  "image_height": 988,
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "orange-main",
+        "zone": "orange",
+        "title": "Patrolled zone \u2014 main Ann St",
+        "rules": "A valid parking permit must be clearly visible on the front window. Vehicles without one may be towed at the owner's expense. Keep this stretch of Ann St clear: it connects both gates."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              280,
+              -89
+            ],
+            [
+              280,
+              -113
+            ],
+            [
+              717,
+              -115
+            ],
+            [
+              748,
+              -675
+            ],
+            [
+              793,
+              -677
+            ],
+            [
+              771,
+              -104
+            ],
+            [
+              812,
+              -92
+            ],
+            [
+              810,
+              -48
+            ],
+            [
+              719,
+              -45
+            ],
+            [
+              716,
+              -86
+            ],
+            [
+              280,
+              -89
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "green-west",
+        "zone": "green",
+        "title": "Not patrolled \u2014 west rows in front of homes",
+        "rules": "The tow company does not patrol here. A tow happens only if a car blocks a resident's vehicle, driveway or pedestrian path, and only when a resident requests it with photo ID or proof of address. Private driveways are never towed."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              208,
+              -163
+            ],
+            [
+              211,
+              -392
+            ],
+            [
+              279,
+              -391
+            ],
+            [
+              279,
+              -295
+            ],
+            [
+              715,
+              -295
+            ],
+            [
+              725,
+              -290
+            ],
+            [
+              721,
+              -217
+            ],
+            [
+              706,
+              -210
+            ],
+            [
+              276,
+              -210
+            ],
+            [
+              272,
+              -163
+            ],
+            [
+              208,
+              -163
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "green-east",
+        "zone": "green",
+        "title": "Not patrolled \u2014 east rows & diagonal in front of homes",
+        "rules": "The tow company does not patrol here. A tow happens only if a car blocks a resident's vehicle, driveway or pedestrian path, and only when a resident requests it with photo ID or proof of address. Private driveways are never towed."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              779,
+              -207
+            ],
+            [
+              781,
+              -298
+            ],
+            [
+              1087,
+              -294
+            ],
+            [
+              1153,
+              -480
+            ],
+            [
+              1150,
+              -503
+            ],
+            [
+              791,
+              -504
+            ],
+            [
+              794,
+              -571
+            ],
+            [
+              1192,
+              -569
+            ],
+            [
+              1235,
+              -673
+            ],
+            [
+              1294,
+              -674
+            ],
+            [
+              1080,
+              -117
+            ],
+            [
+              1018,
+              -116
+            ],
+            [
+              1016,
+              -208
+            ],
+            [
+              779,
+              -207
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "kind": "gate",
+        "title": "Gate (location to be confirmed)",
+        "needs_confirmation": true,
+        "note": "west end of the Ann St top bar"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          280,
+          -101
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "kind": "gate",
+        "title": "Gate (location to be confirmed)",
+        "needs_confirmation": true,
+        "note": "south end of the main Ann St stretch, at the parking lot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770,
+          -676
+        ]
+      }
+    }
+  ]
+}

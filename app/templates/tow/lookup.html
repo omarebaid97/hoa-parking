@@ -1,0 +1,12 @@
+{% extends "tow/_base.html" %}
+{% block title %}Look up a plate{% endblock %}
+{% block content %}
+<h1>Look up a license plate</h1>
+<form method="post" action="/tow/lookup">
+  <div class="field">
+    <label for="plate">License plate</label>
+    <input type="text" id="plate" name="plate" class="big-plate-input" required autocomplete="off" autofocus>
+  </div>
+  <button type="submit" class="btn">Check this plate</button>
+</form>
+{% endblock %}

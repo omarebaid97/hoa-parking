@@ -1,0 +1,10 @@
+{% extends "resident/_base.html" %}
+{% block title %}Saved{% endblock %}
+{% block content %}
+<div class="result-banner panel-green">
+  <span class="result-icon" aria-hidden="true">&#10003;</span>
+  <h1>{{ heading }}</h1>
+  <p>{{ message }}</p>
+</div>
+<a class="btn" href="/resident">Back to my cars</a>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "board/_base.html" %}
+{% block title %}Lookup audit log{% endblock %}
+{% block content %}
+<h1>Lookup audit log</h1>
+<p>Every plate a tow operator has looked up.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Plate</th><th>Result</th><th>Matched to</th><th>Unit</th><th>When</th></tr></thead>
+  <tbody>
+    {% for row in entries %}
+    <tr>
+      <td>{{ row.plate }}</td>
+      <td>{{ row.result }}</td>
+      <td>{{ row.matched_type or "" }}</td>
+      <td>{{ row.matched_unit.address if row.matched_unit else "" }}</td>
+      <td>{{ row.looked_up_at.strftime("%b %-d, %-I:%M %p") }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

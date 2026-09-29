@@ -1,0 +1,34 @@
+{% extends "resident/_base.html" %}
+{% block title %}{{ "Replace a car" if old_vehicle else "Add a car" }}{% endblock %}
+{% block content %}
+<h1>{{ "Replace a car" if old_vehicle else "Add a car" }}</h1>
+{% if old_vehicle %}
+<p>Replacing <span class="plate-badge">{{ old_vehicle.plate }}</span> ({{ old_vehicle.color }} {{ old_vehicle.make }} {{ old_vehicle.model }}). That permit will be turned off as soon as you save the new car.</p>
+{% endif %}
+
+{% if error %}
+<div class="field"><p class="error">{{ error }}</p></div>
+{% endif %}
+
+<form method="post" action="{{ action_url }}">
+  <div class="field">
+    <label for="plate">License plate</label>
+    <input type="text" id="plate" name="plate" required autocomplete="off" value="{{ form.plate if form else '' }}">
+    <div class="hint">Texas plate, e.g. ABC1234. Spaces and dashes are fine.</div>
+  </div>
+  <div class="field">
+    <label for="color">Car color</label>
+    <input type="text" id="color" name="color" required value="{{ form.color if form else '' }}">
+  </div>
+  <div class="field">
+    <label for="make">Car make</label>
+    <input type="text" id="make" name="make" required placeholder="e.g. Toyota" value="{{ form.make if form else '' }}">
+  </div>
+  <div class="field">
+    <label for="model">Car model</label>
+    <input type="text" id="model" name="model" required placeholder="e.g. Camry" value="{{ form.model if form else '' }}">
+  </div>
+  <button type="submit" class="btn">Save my car</button>
+</form>
+<p><a href="/resident">Cancel and go back</a></p>
+{% endblock %}

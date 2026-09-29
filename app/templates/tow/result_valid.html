@@ -1,0 +1,20 @@
+{% extends "tow/_base.html" %}
+{% block title %}Valid permit{% endblock %}
+{% block content %}
+<div class="result-banner panel-green">
+  <span class="result-icon" aria-hidden="true">&#10003;</span>
+  <h1>VALID PERMIT &mdash; DO NOT TOW</h1>
+  <p><span class="plate-badge">{{ result.plate_display }}</span></p>
+</div>
+<div class="card">
+  <p><strong>Unit:</strong> {{ result.unit.address }}</p>
+  {% if result.vehicle %}
+  <p><strong>Vehicle:</strong> {{ result.vehicle.color }} {{ result.vehicle.make }} {{ result.vehicle.model }}</p>
+  <p><strong>Permit type:</strong> Resident permit</p>
+  {% else %}
+  <p><strong>Permit type:</strong> Guest pass <span class="proposed-tag">Proposed</span></p>
+  <p><strong>Expires:</strong> {{ result.guest_pass.expires_at.strftime("%b %-d at %-I:%M %p") }}</p>
+  {% endif %}
+</div>
+<a class="btn" href="/tow">Look up another plate</a>
+{% endblock %}

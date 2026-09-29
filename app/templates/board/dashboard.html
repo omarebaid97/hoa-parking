@@ -1,0 +1,26 @@
+{% extends "board/_base.html" %}
+{% block title %}Board dashboard{% endblock %}
+{% block content %}
+<h1>Board dashboard</h1>
+
+<div class="card">
+  <p><strong>{{ unit_count }}</strong> units &middot; <strong>{{ vehicle_count }}</strong> active car permits &middot; <strong>{{ pending_count }}</strong> pending tow approvals</p>
+</div>
+
+<div class="btn-block-group">
+  <a class="btn" href="/board/units">Units</a>
+  <a class="btn btn-secondary" href="/board/approvals">Tow approvals{% if pending_count %} ({{ pending_count }} pending){% endif %}</a>
+  <a class="btn btn-secondary" href="/board/tow-log">Tow log</a>
+  <a class="btn btn-secondary" href="/board/audit-log">Lookup audit log</a>
+</div>
+
+{% if demo_mode %}
+<div class="card panel-neutral">
+  <h2>Demo data</h2>
+  <p>Reset every unit, vehicle, guest pass, and log back to the seeded demo state. This also happens automatically every night at 3am (America/Chicago) while demo mode is on.</p>
+  <form method="post" action="/board/reset-demo-data" onsubmit="return confirm('Reset all demo data now?');">
+    <button type="submit" class="btn btn-danger">Reset demo data</button>
+  </form>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block header_extra %}
+<span class="app-role-tag">Tow company</span>
+<nav class="app-nav">
+  <a href="/tow">Look up a plate</a>
+  <a href="/tow/record-tow">Record a tow</a>
+</nav>
+<form class="logout-form" method="post" action="/tow/logout">
+  <button type="submit">Sign out</button>
+</form>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "tow/_base.html" %}
+{% block title %}No valid permit{% endblock %}
+{% block content %}
+<div class="result-banner panel-red">
+  <span class="result-icon" aria-hidden="true">&#10007;</span>
+  <h1>NO VALID PERMIT</h1>
+  <p><span class="plate-badge">{{ plate }}</span></p>
+</div>
+<p>Where is this car parked?</p>
+<div class="btn-block-group">
+  <form method="post" action="/tow/outcome">
+    <input type="hidden" name="plate" value="{{ plate }}">
+    <input type="hidden" name="zone" value="orange">
+    <button type="submit" class="btn">Orange zone (patrolled Ann St)</button>
+  </form>
+  <form method="post" action="/tow/outcome">
+    <input type="hidden" name="plate" value="{{ plate }}">
+    <input type="hidden" name="zone" value="green">
+    <button type="submit" class="btn btn-secondary">Green zone (in front of a home)</button>
+  </form>
+  <form method="post" action="/tow/outcome">
+    <input type="hidden" name="plate" value="{{ plate }}">
+    <input type="hidden" name="zone" value="driveway">
+    <button type="submit" class="btn btn-secondary">Private driveway</button>
+  </form>
+</div>
+<p><a href="/tow">Look up a different plate</a></p>
+{% endblock %}

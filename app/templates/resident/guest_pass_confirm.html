@@ -1,0 +1,11 @@
+{% extends "resident/_base.html" %}
+{% block title %}Guest pass created{% endblock %}
+{% block content %}
+<span class="proposed-tag">Proposed &mdash; pending Board approval</span>
+<div class="result-banner panel-green">
+  <span class="result-icon" aria-hidden="true">&#10003;</span>
+  <h1>Guest pass created</h1>
+  <p><span class="plate-badge">{{ guest_pass.plate }}</span> is good until {{ guest_pass.expires_at.strftime("%b %-d at %-I:%M %p") }}.</p>
+</div>
+<a class="btn" href="/resident/guest-pass">Back to guest passes</a>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "board/_base.html" %}
+{% block title %}{{ unit.address }}{% endblock %}
+{% block content %}
+<h1>{{ unit.address }}</h1>
+<p><a href="/board/units">Back to units</a></p>
+
+{% if error %}
+<div class="field"><p class="error">{{ error }}</p></div>
+{% endif %}
+{% if message %}
+<div class="callout"><p>{{ message }}</p></div>
+{% endif %}
+
+<div class="card">
+  <h2>Car permits</h2>
+  {% if vehicles %}
+    {% for vehicle in vehicles %}
+    <div class="vehicle-row">
+      <div>
+        <span class="plate-badge">{{ vehicle.plate }}</span>
+        <div>{{ vehicle.color }} {{ vehicle.make }} {{ vehicle.model }}</div>
+      </div>
+      <div class="vehicle-actions">
+        <form method="post" action="/board/units/{{ unit.id }}/vehicles/{{ vehicle.id }}/remove"
+              onsubmit="return confirm('Remove this permit?');">
+          <button type="submit" class="btn btn-danger">Remove</button>
+        </form>
+      </div>
+    </div>
+    {% endfor %}
+  {% else %}
+  <p>No cars on file.</p>
+  {% endif %}
+
+  {% if vehicles|length < cap %}
+  <h3>Add a car on this resident's behalf</h3>
+  <form method="post" action="/board/units/{{ unit.id }}/vehicles/new">
+    <div class="field"><label for="plate">Plate</label><input type="text" id="plate" name="plate" required></div>
+    <div class="field"><label for="color">Color</label><input type="text" id="color" name="color" required></div>
+    <div class="field"><label for="make">Make</label><input type="text" id="make" name="make" required></div>
+    <div class="field"><label for="model">Model</label><input type="text" id="model" name="model" required></div>
+    <button type="submit" class="btn">Add car</button>
+  </form>
+  {% else %}
+  <p>This unit already has {{ cap }} permits. Remove one before adding another.</p>
+  {% endif %}
+</div>
+
+<div class="card">
+  <h2>Guest passes <span class="proposed-tag">Proposed</span></h2>
+  {% if guest_passes %}
+    {% for pass in guest_passes %}
+    <div class="vehicle-row">
+      <span class="plate-badge">{{ pass.plate }}</span>
+      <span>expires {{ pass.expires_at.strftime("%b %-d, %-I:%M %p") }}</span>
+    </div>
+    {% endfor %}
+  {% else %}
+  <p>No guest passes.</p>
+  {% endif %}
+</div>
+{% endblock %}

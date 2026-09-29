@@ -1,0 +1,43 @@
+{% extends "board/_base.html" %}
+{% block title %}Tow approvals{% endblock %}
+{% block content %}
+<h1>Tow approvals</h1>
+
+<h2>Pending</h2>
+{% if pending %}
+  {% for req in pending %}
+  <div class="card panel-orange">
+    <p><span class="plate-badge">{{ req.plate }}</span> &mdash; {{ req.zone }} zone</p>
+    {% if req.location_note %}<p>{{ req.location_note }}</p>{% endif %}
+    <p>Requested at {{ req.requested_at.strftime("%b %-d, %-I:%M %p") }}</p>
+    <form method="post" action="/board/approvals/{{ req.id }}/approve" class="field">
+      <label for="approve_name_{{ req.id }}">Your name</label>
+      <input type="text" id="approve_name_{{ req.id }}" name="decided_by" required>
+      <button type="submit" class="btn">Approve tow</button>
+    </form>
+    <form method="post" action="/board/approvals/{{ req.id }}/deny" class="field">
+      <label for="deny_name_{{ req.id }}">Your name</label>
+      <input type="text" id="deny_name_{{ req.id }}" name="decided_by" required>
+      <button type="submit" class="btn btn-danger">Deny tow</button>
+    </form>
+  </div>
+  {% endfor %}
+{% else %}
+<p>No pending requests.</p>
+{% endif %}
+
+<h2>Decided</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Plate</th><th>Zone</th><th>Status</th><th>Decided by</th><th>Decided at</th></tr></thead>
+  <tbody>
+    {% for req in decided %}
+    <tr>
+      <td>{{ req.plate }}</td><td>{{ req.zone }}</td><td>{{ req.status }}</td>
+      <td>{{ req.decided_by }}</td><td>{{ req.decided_at.strftime("%b %-d, %-I:%M %p") if req.decided_at else "" }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block header_extra %}
+<span class="app-role-tag">{{ unit.address }}</span>
+<nav class="app-nav">
+  <a href="/resident">My cars</a>
+  <a href="/resident/guest-pass">Guest pass</a>
+  <a href="/resident/rules">Parking rules</a>
+</nav>
+<form class="logout-form" method="post" action="/resident/logout">
+  <button type="submit">Sign out</button>
+</form>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "board/_base.html" %}
+{% block title %}Tow log{% endblock %}
+{% block content %}
+<h1>Tow log</h1>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Plate</th><th>Zone</th><th>Location</th><th>Approval ref.</th><th>Photo</th><th>Towed at</th></tr></thead>
+  <tbody>
+    {% for entry in entries %}
+    <tr>
+      <td>{{ entry.plate }}</td>
+      <td>{{ entry.zone }}</td>
+      <td>{{ entry.location_note or "" }}</td>
+      <td>{{ entry.approval_reference or "" }}</td>
+      <td>{% if entry.photo_path %}<a href="/uploads/{{ entry.photo_path }}">View photo</a>{% endif %}</td>
+      <td>{{ entry.towed_at.strftime("%b %-d, %-I:%M %p") }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

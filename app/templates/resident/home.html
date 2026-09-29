@@ -1,0 +1,33 @@
+{% extends "resident/_base.html" %}
+{% block title %}My cars - {{ unit.address }}{% endblock %}
+{% block content %}
+<h1>My cars</h1>
+<p>{{ unit.address }} &mdash; up to {{ cap }} car permits.</p>
+
+<div class="card">
+  {% if vehicles %}
+    {% for vehicle in vehicles %}
+    <div class="vehicle-row">
+      <div>
+        <span class="plate-badge">{{ vehicle.plate }}</span>
+        <div>{{ vehicle.color }} {{ vehicle.make }} {{ vehicle.model }}</div>
+      </div>
+      <div class="vehicle-actions">
+        <a class="btn btn-secondary" href="/resident/vehicles/{{ vehicle.id }}/replace">Replace this car</a>
+        <a class="btn btn-danger" href="/resident/vehicles/{{ vehicle.id }}/remove">Remove</a>
+      </div>
+    </div>
+    {% endfor %}
+  {% else %}
+    <p>No cars on file yet.</p>
+  {% endif %}
+</div>
+
+{% if vehicles|length < cap %}
+<a class="btn" href="/resident/vehicles/new">Add a car</a>
+{% else %}
+<div class="callout">
+  <p>You already have {{ cap }} car permits. To add a different car, replace one of the cars above.</p>
+</div>
+{% endif %}
+{% endblock %}

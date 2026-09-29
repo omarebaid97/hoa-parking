@@ -1,0 +1,25 @@
+{% extends "tow/_base.html" %}
+{% block title %}Approval status{% endblock %}
+{% block content %}
+{% if request_row.status == "pending" %}
+<meta http-equiv="refresh" content="15">
+{% endif %}
+<div class="result-banner {{ 'panel-orange' if request_row.status == 'pending' else ('panel-green' if request_row.status == 'approved' else 'panel-red') }}">
+  <h1>
+    {% if request_row.status == "pending" %}Waiting on the Board
+    {% elif request_row.status == "approved" %}Approved by {{ request_row.decided_by }}
+    {% else %}Denied by {{ request_row.decided_by }}{% endif %}
+  </h1>
+  <p><span class="plate-badge">{{ request_row.plate }}</span></p>
+</div>
+
+{% if request_row.status == "pending" %}
+<p>This page checks again automatically every 15 seconds.</p>
+<a class="btn btn-secondary" href="/tow/approval-requests/{{ request_row.id }}">Check again now</a>
+{% elif request_row.status == "approved" %}
+<a class="btn btn-danger" href="/tow/record-tow?plate={{ request_row.plate }}&amp;zone=orange&amp;approval_reference=Approved by {{ request_row.decided_by }} (request #{{ request_row.id }})">Record a tow</a>
+{% else %}
+<p>Do not tow this car.</p>
+{% endif %}
+<p><a href="/tow">Look up another plate</a></p>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "tow/_base.html" %}
+{% block title %}Green zone - no valid permit{% endblock %}
+{% block content %}
+<div class="result-banner panel-green">
+  <span class="result-icon" aria-hidden="true">&#9888;</span>
+  <h1>Only tow if requested</h1>
+  <p><span class="plate-badge">{{ plate }}</span> is in the green zone (not patrolled).</p>
+</div>
+<p>Only tow this car if a resident asks for it in person <strong>and</strong> shows photo ID or a document proving their address.</p>
+<div class="btn-block-group">
+  <a class="btn btn-danger" href="/tow/record-tow?plate={{ plate }}&amp;zone=green">Record a tow (resident requested it)</a>
+  <a class="btn btn-secondary" href="/tow">Look up another plate</a>
+</div>
+{% endblock %}

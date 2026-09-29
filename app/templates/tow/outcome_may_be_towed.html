@@ -1,0 +1,13 @@
+{% extends "tow/_base.html" %}
+{% block title %}May be towed{% endblock %}
+{% block content %}
+<div class="result-banner panel-red">
+  <span class="result-icon" aria-hidden="true">&#9888;</span>
+  <h1>May be towed</h1>
+  <p><span class="plate-badge">{{ plate }}</span> is in the orange zone with no valid permit.</p>
+</div>
+<div class="btn-block-group">
+  <a class="btn btn-danger" href="/tow/record-tow?plate={{ plate }}&amp;zone=orange">Record a tow</a>
+  <a class="btn btn-secondary" href="/tow">Look up another plate</a>
+</div>
+{% endblock %}

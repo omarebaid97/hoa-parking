@@ -1,0 +1,53 @@
+{% extends "resident/_base.html" %}
+{% block title %}Guest pass{% endblock %}
+{% block content %}
+<h1>Guest pass</h1>
+<span class="proposed-tag">Proposed &mdash; pending Board approval</span>
+<p>This feature is not official HOA policy yet. It is shown here as a preview of what the Board is considering.</p>
+
+<div class="card">
+  <h2>Active guest passes</h2>
+  {% if active_passes %}
+  {% for pass in active_passes %}
+  <div class="vehicle-row">
+    <div>
+      <span class="plate-badge">{{ pass.plate }}</span>
+      <div>Expires {{ pass.expires_at.strftime("%b %-d at %-I:%M %p") }}</div>
+      {% if pass.guest_note %}<div>{{ pass.guest_note }}</div>{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+  {% else %}
+  <p>No active guest passes.</p>
+  {% endif %}
+</div>
+
+{% if error %}
+<div class="field"><p class="error">{{ error }}</p></div>
+{% endif %}
+
+<div class="card">
+  <h2>Add a guest pass</h2>
+  <p>Up to {{ max_active }} active at once for this unit.</p>
+  <form method="post" action="/resident/guest-pass">
+    <div class="field">
+      <label for="plate">Guest's license plate</label>
+      <input type="text" id="plate" name="plate" required autocomplete="off">
+    </div>
+    <div class="field">
+      <label for="hours">How many hours will the guest be here?</label>
+      <select id="hours" name="hours">
+        <option value="12">12 hours</option>
+        <option value="24" selected>24 hours (1 day)</option>
+        <option value="48">48 hours (2 days)</option>
+        <option value="{{ max_hours }}">{{ max_hours }} hours (max)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="guest_note">Note (optional)</label>
+      <input type="text" id="guest_note" name="guest_note" placeholder="e.g. Mom visiting">
+    </div>
+    <button type="submit" class="btn">Create guest pass</button>
+  </form>
+</div>
+{% endblock %}
